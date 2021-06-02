@@ -127,10 +127,93 @@ One common use case is to be able to see unique occurrences of a particular valu
   "yellow"
 ]
 
+```
 
+```
+[root@k8s-mas01 jnr]# cat niru.json
+{
+  "id": {
+    "guide": "E00012345",
+    "hello": "02283",
+    "fec": [
+      "S12345"
+    ],
+    "govtrack": 124421,
+    "opensecrets": "NirU000",
+    "lists": "S376"
+  },
+  "name": {
+    "first": "Niranjan",
+    "last": "Reddy",
+    "official_full": ""
+  },
+  "bio": {
+    "gender": "F",
+    "birthday": "1977-07-01"
+  },
+  "terms": [
+    {
+      "type": "sen",
+      "start": "2015-01-06",
+      "end": "2021-01-03",
+      "state": "IA",
+      "class": 2,
+      "state_rank": "junior",
+      "party": "own party",
+      "url": "http://www.example.com",
+      "address": "Hyderabad",
+      "office": "manikonda",
+      "phone": "9989000880"
+    }
+  ]
+}
 
+[root@k8s-mas01 jnr]# cat niru.json | jq '.terms'
+[
+  {
+    "type": "sen",
+    "start": "2015-01-06",
+    "end": "2021-01-03",
+    "state": "IA",
+    "class": 2,
+    "state_rank": "junior",
+    "party": "own party",
+    "url": "http://www.example.com",
+    "address": "Hyderabad",
+    "office": "manikonda",
+    "phone": "9989000880"
+  }
+]
 
+[root@k8s-mas01 jnr]# cat niru.json | jq '.terms[].phone'
+"9989000880"
 
+[root@k8s-mas01 jnr]# cat niru.json | jq '.name'
+{
+  "first": "Niranjan",
+  "last": "Reddy",
+  "official_full": ""
+}
+
+[root@k8s-mas01 jnr]# cat niru.json | jq '.id'
+{
+  "guide": "E00012345",
+  "hello": "02283",
+  "fec": [
+    "S12345"
+  ],
+  "govtrack": 124421,
+  "opensecrets": "NirU000",
+  "lists": "S376"
+}
+
+[root@k8s-mas01 jnr]# cat niru.json | jq '.name.first'
+"Niranjan"
+
+[root@k8s-mas01 jnr]# cat niru.json | jq '.bio .birthday'
+"1985-07-01"
+
+[root@k8s-mas01 jnr]#
 
 
 ```
