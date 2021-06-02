@@ -92,6 +92,46 @@ The map function is a powerful function we can use to apply a filter or function
   3.24
 ]
 
+{
+  "name": "banana",
+  "color": "yellow",
+  "price": 0.5
+}
+
+[root@k8s-mas01 jnr]# jq '.[] | select(.color=="green")' array.json
+{
+  "name": "apple",
+  "color": "green",
+  "price": 1.2
+}
+{
+  "name": "kiwi",
+  "color": "green",
+  "price": 1.24
+}
+
+Next up, we’re going to look at the test function which enables us to test if an input matches against a given regular expression:
+
+[root@k8s-mas01 jnr]# jq '.[] | select(.name|test("^a.")) | .price' array.json
+1.2
+[root@k8s-mas01 jnr]# jq '.[] | select(.name|test("^b.")) | .price' array.json
+0.5
+[root@k8s-mas01 jnr]# jq '.[] | select(.name|test("^k.")) | .price' array.json
+1.24
+
+
+One common use case is to be able to see unique occurrences of a particular value within an array or remove duplicates
+[root@k8s-mas01 jnr]# jq 'map(.color) | unique' array.json
+[
+  "green",
+  "yellow"
+]
+
+
+
+
+
+
 
 ```
 
