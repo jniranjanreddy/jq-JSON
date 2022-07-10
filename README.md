@@ -1,5 +1,26 @@
 # jq-JSON
 
+
+```
+root@minikube01 ~ # aws iam list-users
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "devops",
+            "UserId": "1234",
+            "Arn": "arn:aws:iam::1234:user/devops",
+            "CreateDate": "2022-07-10T13:47:56+00:00"
+        }
+    ]
+}
+
+root@minikube01 ~ # aws iam list-users | jq '.Users[].UserName'
+"devops"
+```
+
+
+
 ```
 [root@k8s-mas01 jnr]# cat fruit.json
 {
